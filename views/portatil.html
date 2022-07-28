@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Portatil</title>
+    <link rel="stylesheet" href="../style/default.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/3aaaae7e62.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="background">
+    <div class="container">
+
+        <!-- Modal de seleccion de registro -->
+
+        <div class="modal fade" id="tipoRegistro" aria-hidden="true" aria-labelledby="tipoRegistroLabel" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Tipo de Registro</h5>
+                    </div>
+                    <div class="modal-body">
+                        Por favor indique la acción a realizar
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button button-blue" data-bs-target="#modalSearchId"
+                            data-bs-toggle="modal"><span>Buscar Registro</span></button>
+                        <button class="button button-blue" data-bs-toggle="modal"><span>Nuevo Registro</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de busqueda de registro -->
+
+
+        <div class="modal fade" id="modalSearchId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content rounded-0">
+                    <form id="formSearchId">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel2">Busqueda de Registro</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Codigo de Registro: </label>
+                                <input type="text" class="form-control" name="idRegistro" id="idRegistro" required>
+                                <small id="helpId" class="form-text text-muted">Codigo de 3 a 4 digitos</small>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="button button-blue" type="submit"
+                                id="formSearchIdButton"><span>Buscar</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a hidden="hidden" data-bs-toggle="modal" href="#tipoRegistro" role="button" id="buttonTipoRegistro"></a>
+
+
+        <!-- Modal datos invalidos -->
+
+
+        <div class="modal fade" id="modalSearchInvalid" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content rounded-0">
+                    <form id="formSearchId">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel2">Busqueda de Registro</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Id del registro es invalido por favor verifiquelo </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="button button-blue"  type="button" data-bs-target="#modalSearchId" data-bs-toggle="modal"><span>Atras</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a hidden="hidden" data-bs-toggle="modal" href="#tipoRegistro" role="button" id="buttonTipoRegistro"></a>
+        <a hidden="hidden" data-bs-toggle="modal" href="#modalSearchInvalid" role="button" id="buttonInvalidData"></a>
+
+
+
+
+        <!-- Registro nuevo -->
+
+        <div class="row pt-5 pb-3">
+            <div class="col-1">
+                <button class="button button-blue" role="button" id="buttonHome"><span class="text"><i
+                            class="fa-solid fa-house-chimney fa-lg"></i></span></button>
+
+            </div>
+            <div class="col-10">
+                <h2 class="text-center title text-white ">Registro de Portátil</h2>
+            </div>
+
+        </div>
+        <div class="card p-4 rounded-0">
+            <form id="formPortatil">
+                <fieldset class="mb-3 row ">
+                    <legend class="col-form-legend col-xs-4">Datos Personales</legend>
+                    <div class="col-xs-8">
+                        <div class="mb-3 row">
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Nombres:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Apellidos:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="lastName" id="lastName"
+                                        placeholder="Apellido">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <div class="col-md-12 col-sm-12">
+                                <label for="" class="form-label">Tipo de Acceso</label>
+                                <select class="form-control" name="typeAccess" id="typeAccess">
+                                    <option value="0">Seleccionar...</option>
+                                    <option value="1">Miembro de la Universidad</option>
+                                    <option value="2">Invitado</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label" id="labelTypeIdentification">Tipo de Identificacion:</label>
+                                <div class="col-xs-8">
+                                    <select class="form-control" name="typeIdentification" id="typeIdentification" disabled>
+                                        <option value="0">Seleccionar...</option>
+                                        <option value="1">Cedula de Ciudadania</option>
+                                        <option value="2">Tarjeta de Identidad</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Codigo Estudiantil:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="code" id="code"
+                                        placeholder="Identificacion" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+
+                <fieldset class="mb-3 row">
+                    <legend class="col-form-legend col-xs-4">Datos del Portátil</legend>
+                    <div class="col-xs-8">
+                        <div class="mb-3 row">
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Marca del equipo:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="brand" id="brand" placeholder="Marca">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Modelo del equipo:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="model" id="model"
+                                        placeholder="Modelo">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="inputName" class="col-xs-4 col-form-label">Serial del equipo:</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" name="serial" id="serial" placeholder="Serial">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+                <div class="row">
+                    <div class="d-flex  flex-row-reverse ">
+                        <button class="button button-blue" type="submit" id="formPortatilButton"><span
+                                class="text">Enviar</span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="../scripts/portatilScript.js" type="module"></script>
+</body>
+
+</html>

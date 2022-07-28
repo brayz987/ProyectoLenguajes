@@ -1,0 +1,180 @@
+@font-face {
+    font-family: Altone-Regular;
+    src: url(./fonts/Altone-Regular.ttf);
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url(./fonts/Raleway-Light.ttf);
+}
+
+
+.title {
+    font-family: Altone-Regular;
+}
+
+.subtitle {
+    font-family: Raleway;
+    font-size: 1rem;
+
+}
+
+
+.background {
+    background-size: cover;
+    background-color: #0e1f58;
+}
+
+.container-fluid {
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+
+
+
+
+
+/* CSS Buttons */
+.button {
+  appearance: none;
+  border-width: 0;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Raleway;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 1em;
+  margin: 0;
+  opacity: 1;
+  outline: 0;
+  padding: 1.5em 2.2em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-rendering: geometricprecision;
+  text-transform: uppercase;
+  transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1),background-color 100ms cubic-bezier(.694, 0, 0.335, 1),color 100ms cubic-bezier(.694, 0, 0.335, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button:before {
+  animation: opacityFallbackOut .5s step-end forwards;
+  backface-visibility: hidden;
+  clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translateZ(0);
+  transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+  width: 100%;
+}
+
+.button:hover:before {
+  animation: opacityFallbackIn 0s step-start forwards;
+  clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+.button:after {
+  background-color: #FFFFFF;
+}
+
+.button span {
+  z-index: 1;
+  position: relative;
+}
+
+.button-blue{
+    background-color: #102467;
+}
+.button-blue:before{
+    background-color: #255bfe;
+}
+
+
+
+
+/* CSS Cards Home */
+
+
+.img-card {
+    height: 20rem;
+    object-fit: cover;
+    object-position: 100% 0;
+}
+
+
+
+.card-home {
+    height: 37rem;
+    cursor: pointer;
+    transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1),background-color 100ms cubic-bezier(.694, 0, 0.335, 1),color 100ms cubic-bezier(.694, 0, 0.335, 1);
+    border: none;
+  } 
+
+
+.card-home:hover:before {
+    animation: opacityFallbackIn 0s step-start forwards;
+    clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+
+.card-home:before {
+    animation: opacityFallbackOut .5s step-end forwards;
+    backface-visibility: hidden;
+    clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateZ(0);
+    transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+    width: 100%;
+  }
+
+
+  .card-home img,h5,p{
+    z-index: 1;
+    position: relative;
+  }
+
+
+.color-blue {
+    background-color: #102467;
+}
+
+.color-blue:before{
+    background-color: #255bfe;
+}
+
+
+.color-blue-light {
+    background-color: #255bfe;
+}
+
+.color-blue-light:before{
+    background-color: #102467;
+}
+
+
+.color-yellow {
+    background-color: #e79b02;
+}
+
+.color-yellow:before {
+    background-color: #feab00;
+}

@@ -1,0 +1,11 @@
+mysql2
+express
+body-parser
+cors
+@hapi/joi
+jsonwebtoken
+dotenv
+bcrypt
+
+
+nodemon

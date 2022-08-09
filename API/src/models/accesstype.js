@@ -10,18 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      accessType.belongsTo(models.guest, {
-        foreignKey: 'id',
-        targetKey: 'idGuest'
-      });
-      accessType.belongsTo(models.computer, {
-        foreignKey: 'id',
-        targetKey: 'idComputer'
-      });
-      accessType.belongsTo(models.student, {
-        foreignKey: 'id',
-        targetKey: 'idStudent'
-      });
+      // accessType.belongsTo(models.guest, {
+      //   foreignKey: 'id',
+      //   targetKey: 'idGuest'
+      // });
+      // accessType.belongsTo(models.computer, {
+      //   foreignKey: 'id',
+      //   targetKey: 'idComputer'
+      // });
+      // accessType.belongsTo(models.student, {
+      //   foreignKey: 'id',
+      //   targetKey: 'idStudent'
+      // });  
     }
   }
   accessType.init({

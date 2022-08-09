@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      typeidentification.hasMany(models.guest, {
-        foreignKey: 'idTypeIdentification'
-      })
+      // typeidentification.hasMany(models.guest, {
+      //   foreignKey: 'idTypeIdentification'
+      // })
     }
   }
   typeidentification.init({

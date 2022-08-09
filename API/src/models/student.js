@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      student.hasMany(models.accessType, {
-        foreignKey: 'idStudent'
-      });
-      student.hasMany(models.carnetRequest, {
-        foreignKey: 'idStudent'
-      });
-      student.belongsTo(models.career, {
-        foreignKey: 'id',
-        targetKey: 'idCareer'
-      })
+      // student.hasMany(models.accessType, {
+      //   foreignKey: 'idStudent'
+      // });
+      // student.hasMany(models.carnetRequest, {
+      //   foreignKey: 'idStudent'
+      // });
+      // student.belongsTo(models.career, {
+      //   foreignKey: 'id',
+      //   targetKey: 'idCareer'
+      // })
     }
   }
   student.init({

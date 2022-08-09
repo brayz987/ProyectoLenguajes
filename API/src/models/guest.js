@@ -11,16 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      guest.belongsTo(models.idTypeIdentification, {
-        foreignKey: 'id',
-        targetKey: 'idTypeIdentification'
-      });
-      guest.hasMany(model.ingressguest, {
-        foreignKey: 'idGuestIngress',
-      });
-      guest.hasMany(model.accessType, {
-        foreignKey: 'idGuest',
-      });
+      // guest.belongsTo(models.idTypeIdentification, {
+      //   foreignKey: 'id',
+      //   targetKey: 'idTypeIdentification'
+      // });
+      // guest.hasMany(models.ingressguest, {
+      //   foreignKey: 'idGuestIngress',
+      // });
+      // guest.hasMany(models.accessType, {
+      //   foreignKey: 'idGuest',
+      // });
     }
   }
   guest.init({

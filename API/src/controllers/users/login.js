@@ -35,7 +35,7 @@ module.exports = {
         const token = jwt.sign({
             name: userData.name,
             id: userData.id
-        }, process.env.SECRET_TOKEN ,{ expiresIn: "5m" });
+        }, process.env.SECRET_TOKEN ,{ expiresIn: "365d" });
 
         return await res.header('auth-token', token).json({
             message: 'todo nice',

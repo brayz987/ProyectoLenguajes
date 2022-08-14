@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      student.hasMany(models.accessType, {
-        foreignKey: 'idStudent'
+      student.belongsTo(models.person, {
+        foreignKey: 'idPerson'
       });
       student.hasMany(models.carnetRequest, {
         foreignKey: 'idStudent'
@@ -32,19 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       type: DataTypes.INTEGER
     },
-    name: {
-      allowNull: true,
-      type: DataTypes.STRING(45)
-    },
-    lastname: {
-      allowNull: true,
-      type: DataTypes.STRING(45)
-    },
     email: {
       allowNull: true,
       type: DataTypes.STRING(45)
     },
-    cellphone: DataTypes.BIGINT,
     idCareer: {
       allowNull: false,
       type: DataTypes.INTEGER
@@ -52,6 +43,18 @@ module.exports = (sequelize, DataTypes) => {
     promotion: {
       allowNull: true,
       type: DataTypes.INTEGER
+    },
+    idPerson:{
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    createdAt: {
+      type: DataTypes.DATE(6),
+      defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+      type: DataTypes.DATE(6),
+      defaultValue: DataTypes.NOW
     }
   }, {
     sequelize,

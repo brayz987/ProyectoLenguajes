@@ -1,28 +1,15 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('ingressGuests', {
+    await queryInterface.createTable('typePeople', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      dateHourIngress: {
-        type: Sequelize.DATE
-      },
-      dateHourExit: {
-        type: Sequelize.DATE
-      },
-      motivo: {
-        type: Sequelize.TEXT
-      },
-      idGuestIngress: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'guests',
-          key: 'id'
-        }
+      name: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +22,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ingressGuests');
+    await queryInterface.dropTable('typePeople');
   }
 };

@@ -1,37 +1,35 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('accessTypes', {
+    await queryInterface.createTable('people', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idInvitado: {
-        allowNull: true,
+      name: {
+        type: Sequelize.STRING
+      },
+      lastname: {
+        type: Sequelize.STRING
+      },
+      identification: {
+        type: Sequelize.BIGINT
+      },
+      idTypeIdentification: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'guests',
+          model: 'typeidentifications',
           key: 'id'
         }
       },
-      idStudent: {
-        allowNull: true,
+      idTypePerson: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'students',
+          model: 'typePeople',
           key: 'id'
-        }
-      },
-      idComputer: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'computers',
-          key: 'id'
-        }
-      },
+      }},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -43,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('accessTypes');
+    await queryInterface.dropTable('people');
   }
 };

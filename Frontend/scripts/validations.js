@@ -84,5 +84,6 @@ const dinamicValidation = (element, formValid) => {
 
 export {
     validarForm,
-    dinamicValidation
+    dinamicValidation,
+    inValidClass
 }

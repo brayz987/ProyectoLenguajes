@@ -3,12 +3,12 @@
 
 
 const router = require('express').Router();
-const userConstroller = require('../controllers/users/user');
-const loginController = require('../controllers/users/login');
+const userConstroller = require('../controllers/users/userController');
+const loginController = require('../controllers/users/loginController');
 
 // import middleware
 
-const validateToken = require('../controllers/validateToken').validateToken;
+const validateToken = require('../controllers/validateTokenController').validateToken;
 
 
 router.post('/register', validateToken, userConstroller.create );

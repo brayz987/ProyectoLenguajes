@@ -10,10 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // carnetRequest.belongsTo(models.student, {
-      //   foreignKey: 'id',
-      //   targetKey: 'idStudent'
-      // })
+      carnetRequest.belongsTo(models.student, {
+        foreignKey: 'idStudent'
+      })
     }
   }
   carnetRequest.init({

@@ -10,10 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // ingressGuest.belongsTo(models.guest, {
-      //   foreignKey: 'id',
-      //   targetKey: 'idGuestIngress'
-      // })
+      ingressGuest.belongsTo(models.guest, {
+        foreignKey: 'idGuestIngress'
+      })
     }
   }
   ingressGuest.init({

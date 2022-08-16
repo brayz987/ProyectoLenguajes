@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       ingress.belongsTo(models.person, {
-        foreignKey: 'idPeople'
+        foreignKey: 'idPersonIngress'
       }),
       ingress.belongsTo(models.computer, {
         foreignKey: 'idComputer'

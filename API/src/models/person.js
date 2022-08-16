@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'idTypeIdentification'
         }),
         person.hasMany(models.ingress, {
-          foreignKey: 'idPeopleIngress'
+          foreignKey: 'idPersonIngress'
         })
     }
   }

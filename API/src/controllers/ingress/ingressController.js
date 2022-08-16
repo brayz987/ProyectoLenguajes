@@ -1,14 +1,16 @@
 const Sequelize = require('sequelize');
 const ingress = require('../../models').ingress;
+const person = require('../../models').person;
+const computer = require('../../models').computer;
 
 
 module.exports = {
 
-    async createAccessGuest(req, res) {
+    async createIngressComputer(req, res) {
         await ingress
             .create ({
                 dateHourIngress: new Date(),
-                idPersonIngress: res.locals.student.dataValues.idperson,
+                idPersonIngress: res.locals.person,
                 idComputer: res.locals.computer.dataValues.id,
             })
             .then ( ingress => {
@@ -21,4 +23,37 @@ module.exports = {
             .catch ( error => res.status(400).json(error));
     },
 
+
+    async getIngressComputer(req, res, next) {
+        const ingressData = await ingress.findAll({
+                attributes: ['id', 'dateHourIngress', 'dateHourExit'],
+                where: {
+                    id: req.body.registerCode
+                },
+                include: [{
+                    model: person,
+                    attributes:  ['id','name', 'lastname','idTypePerson','idTypeIdentification','identification'],
+                    required: true
+                },{
+                    model: computer,
+                    attributes:  ['brand', 'model','serial'],
+                    required: true
+                }]
+            });
+
+            if(ingressData.length === 0){
+                res.json({
+                    error: 1,
+                    message: "El codigo no existe"
+                })
+            }else{
+                if(ingressData[0].dataValues.person.dataValues.idTypePerson === 2 ){
+                    res.locals.ingressData = ingressData;
+                    res.locals.person = ingressData[0].dataValues.person.dataValues.id;
+                    next()
+                }else{
+                    res.json({"ingressData": ingressData[0]});
+                }
+            }
+    }
 }   

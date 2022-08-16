@@ -23,18 +23,20 @@ module.exports = {
             await person
                 .create({
                     name: req.body.name,
-                    lastname: req.body.lastname,
+                    lastname: req.body.lastName,
                     identification: req.body.identification,
                     idTypeIdentification: req.body.idTypeIdentification,
                     idTypePerson: req.body.idTypePerson
                 })
                 .then(person => {
-                    res.locals.person = person;
+                    res.locals.person = person.dataValues.id;
+                    console.log(res.locals.person)
                     next();
                 })
                 .catch(error => res.status(400).json(error));
         } else {
-            res.locals.person = personExist[0] ;
+            res.locals.person = personExist[0].dataValues.id ;
+            console.log(res.locals.person)
             next();
         }
     },

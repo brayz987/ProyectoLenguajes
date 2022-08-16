@@ -11,4 +11,4 @@ document.getElementById("cardCarnet").addEventListener('click', ()=> {
 })
 
 localStorage.setItem("AppToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQXBwIFVzZXIiLCJpZCI6MSwiaWF0IjoxNjYwNDQ0NTkxLCJleHAiOjE2OTE5ODA1OTF9.I_r5jVO-viJlITG0EcenoG1hzLC7iFitJqU1VfQ6rxA");
-localStorage.setItem("ApiURL", "localhost:3001/api");
+localStorage.setItem("ApiURL", "http://localhost:3001/api");

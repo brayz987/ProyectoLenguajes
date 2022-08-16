@@ -17,14 +17,14 @@ const validateToken = require('../controllers/validateTokenController').validate
 
 // Esta ruta es para registrar el computador de un invitado
 // primero valida los datos enviados por post, luego el token, luego hace las insersiones en la db( Tablas: computer, guest, ingress)
-router.post('/registerComputerGuest', validateData.registerComputerGuest , validateToken, computerController.create, personController.create, ingress.createAccessGuest );
-
-
+router.post('/registerComputerGuest', validateData.registerComputerGuest , validateToken, computerController.create, personController.create, ingress.createIngressComputer );
 
 
 // Esta ruta es para registrar el computador de un estudiante
 // primero valida los datos enviados por post, luego el token, valida si existe el estudainte y  luego hace las insersiones en la db( Tablas: computer, ingress)
-router.post('/registerComputerStudent', validateData.registerComputerStundent , validateToken, studentController.validateStudent, computerController.create, ingress.createAccessGuest );
+router.post('/registerComputerStudent', validateData.registerComputerStundent , validateToken, studentController.validateStudent, computerController.create, ingress.createIngressComputer );
+
+
 
 
 

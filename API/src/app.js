@@ -1,17 +1,17 @@
 'use strict';
 
 const express = require('express');
-const bodyparser = require('body-parser');
 const cors = require('cors');
+const morgan = require('morgan');
 
 
 const app = express();
 
 
-// Capturar Body
+// Inicializar Middlewares Generales
 
-app.use(bodyparser.urlencoded({ extended: false}));
-app.use(bodyparser.json());
+app.use(morgan('dev'));
+app.use(express.json());
 app.use(cors({
     origin: 'http://127.0.0.1:5500',
     optionsSuccessStatus: 200 
@@ -23,11 +23,14 @@ app.use(cors({
 const users = require('./routes/users');
 const computers = require('./routes/computers');
 const students = require('./routes/student');
+const ingress = require('./routes/ingress');
 
-// router middlewares
+
+// Inicializar Rutas
 app.use('/api/users', users);
 app.use('/api/computers', computers);
 app.use('/api/students', students);
+app.use('/api/ingress', ingress);
 
 
 // Iniciar Server

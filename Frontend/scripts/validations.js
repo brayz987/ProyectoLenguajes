@@ -31,8 +31,8 @@ const inputValid = (value, id) => {
         case "lastName":
             regex = /^([a-zA-ZÀ-ÖØ-öø-ÿ]{3,25})([\s]?)([a-zA-ZÀ-ÖØ-öø-ÿ]{0,25})$/g;
             break;
-        case "idRegistro":
-            regex = /^([0-9]{3,4})$/g;
+        case "registerCode":
+            regex = /^10([0-9]{4})$/g;
             break;
         case "code":
             regex = /^1([0]{3})([0-9]{5})$/g;

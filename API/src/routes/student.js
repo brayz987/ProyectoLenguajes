@@ -22,5 +22,4 @@ router.post('/register', validateData.registerStudent , validateToken, personCon
 router.get('/getStudent', validateData.getStudent , validateToken, studentController.getStudent );
 
 
-
 module.exports = router;

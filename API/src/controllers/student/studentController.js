@@ -28,7 +28,7 @@ module.exports = {
                     email: req.body.email,
                     idCareer: req.body.idCareer,
                     promotion: req.body.promotion,
-                    idPerson: res.locals.person.dataValues.id,
+                    idPerson: res.locals.person,
                 })
                 .then(student => {
                     res.json(student);
@@ -54,7 +54,7 @@ module.exports = {
                 "message": "El codigo estudiantil no existe"
             });
         } else {
-            res.locals.student = studentExist[0];
+            res.locals.person = studentExist[0].dataValues.idperson;
             next();
         }
     },
@@ -85,7 +85,20 @@ module.exports = {
             return await res.json(studentData);
         }
 
+    },
 
+    async getCodeStudent(req,res) {
+
+        const codeStudent = await student.findAll({
+            attributes: ['studentCode'],
+            where: {
+                idPerson: res.locals.person
+            }
+        });
+        res.json({
+            ingressData: res.locals.ingressData[0],
+            studentCode: codeStudent[0].dataValues.studentCode
+        })
     }
 
 

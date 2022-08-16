@@ -19,6 +19,7 @@ module.exports = {
       },
       idPersonIngress: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'people',
           key: 'id'
@@ -26,6 +27,7 @@ module.exports = {
       },
       idComputer: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'computers',
           key: 'id'

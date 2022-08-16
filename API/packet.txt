@@ -6,6 +6,6 @@ cors
 jsonwebtoken
 dotenv
 bcrypt
-
+morgan
 
 nodemon

@@ -1,6 +1,6 @@
 
-const addRouteHome = () => {
-    document.getElementById("buttonHome").addEventListener('click', () =>  window.location.href = "/")
+const addRouteHome = (button) => {
+    document.getElementById(button).addEventListener('click', () =>  window.location.href = "/")
 }
 
 export {

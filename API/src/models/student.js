@@ -47,14 +47,6 @@ module.exports = (sequelize, DataTypes) => {
     idPerson:{
       allowNull: false,
       type: DataTypes.INTEGER
-    },
-    createdAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    },
-    updatedAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
     }
   }, {
     sequelize,

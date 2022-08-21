@@ -4,20 +4,35 @@
     "password": null,
     "database": "proyectolenguajes",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+      "dialectOptions": {
+        "dateStrings": true,
+        "typeCast": true
+      },
+      "timezone": "-05:00"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "proyectolenguajes",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "dialectOptions": {
+      "dateStrings": true,
+      "typeCast": true
+    },
+    "timezone": "-05:00"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "proyectolenguajes",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "dialectOptions": {
+      "dateStrings": true,
+      "typeCast": true
+    },
+    "timezone": "-05:00"
   }
 }

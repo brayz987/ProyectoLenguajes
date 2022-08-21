@@ -17,7 +17,7 @@ import {
 } from "./generalFuntion.js"
 
 
-addRouteHome(); // Adiciona la ruta al boton de home
+addRouteHome("buttonHome"); // Adiciona la ruta al boton de home
 enablePopovers(); // Activa los popovers
 
 // Elementos
@@ -27,6 +27,7 @@ const formSearchIdButton = document.getElementById("formSearchIdButton");
 const formSearchId = document.getElementById("formSearchId");
 const formPortatil = document.getElementById("formPortatil");
 const formPortatilButton = document.getElementById("formPortatilButton");
+const registerExit = document.getElementById("registerExit");
 const labelCode = document.getElementById("labelCode");
 const buttonModalAlert = document.getElementById("buttonModalAlert");
 const alertMessage = document.getElementById("alertMessage");
@@ -59,6 +60,10 @@ const formValid = { // Estado validacion Formulario
     model: false,
     serial: false
 };
+
+
+
+/// EVENTOS ///
 
 
 // Codigo para mostrar el primer modal
@@ -120,6 +125,13 @@ formSearchIdButton.addEventListener('click', (e) => {
     }
 })
 
+
+
+
+
+
+
+
 // Solicitud de datos a nivel de Backend de un registro
 
 const getIngressData = async (data) => {
@@ -131,6 +143,8 @@ const getIngressData = async (data) => {
             }else{
                 document.getElementById('SearchButtonDismiss').click();
                 fillData(res.data);
+                addTickedInfo(res.data);
+                addButtonRegisterExit(res.data);
             }
         })
         .catch(error => {
@@ -159,6 +173,103 @@ const fillData = (data) => {
     serial.value = data.ingressData.computer.serial;
     disabledForm();
 }
+
+
+
+const addTickedInfo = (data) => {
+    const template = document.createElement('template');
+    const ingressData = data.ingressData;
+    const ingress = ingressData.dateHourIngress.split(' ');
+    const ingressday = ingress[0];
+    const ingresshour = ingress[1];
+
+    let exit = ingressData.dateHourExit;
+    let exitday = "";
+    let exithour = "";
+    if( exit !== null){
+        exit = exit.split(' ');
+        exitday = exit[0];
+        exithour = exit[1];
+    }
+
+    template.innerHTML = `
+        <fieldset class="mb-3 row ">
+            <legend class="col-form-legend col-xs-4">Informacion del Ticket</legend>
+            <div class="col-xs-8">
+                <div class="mb-3 row">
+                    <div class="col-md-12 col-sm-12">
+                        <label for="inputName" class="col-xs-4 col-form-label">ID:</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="idTicket" id="idTicket" placeholder="idTicket" disabled value="${data.ingressData.id}" >
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mb-3 row">
+                    <div class="col-md-6 col-sm-12">
+                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Fecha de Ingreso:</label>
+                        <div class="col-xs-8">
+                            <input type="date" class="form-control"  disabled value="${ingressday}" >
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Hora de Ingreso:</label>
+                        <div class="col-xs-8">
+                            <input type="time" class="form-control"  disabled value="${ingresshour}" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-md-6 col-sm-12">
+                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Fecha de Salida:</label>
+                        <div class="col-xs-8">
+                            <input type="date" class="form-control"  disabled value="${exitday}" >
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Hora de Salida:</label>
+                        <div class="col-xs-8">
+                            <input type="time" class="form-control"  disabled value="${exithour}" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    `;
+    formPortatil.prepend(template.content);
+}
+
+
+// Funcion remplazar los botones de enviar
+const addButtonRegisterExit = (data) => {
+    if(data.ingressData.dateHourExit !== null){
+        formPortatilButton.setAttribute('hidden','hidden');
+    }
+
+    if(data.ingressData.dateHourExit === null){
+        registerExit.removeAttribute('hidden');
+        formPortatilButton.setAttribute('hidden','hidden');
+
+    }
+}
+
+registerExit.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const id = document.getElementById('idTicket').value;
+    const jsonData = {
+        id: id
+    };
+    
+    axios.post(ApiURL+'/ingress/registerExit',jsonData, optionHeader)
+        .then(res => {
+            alertMessage.textContent = res.data.message;
+            buttonModalAlert.click();
+            addRouteHome("okModalButton");
+        })
+
+})
 
 
 //Validacion del Campos Formulario de Registro

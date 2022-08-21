@@ -6,7 +6,7 @@ import {
 } from "./validations.js";
 
 
-addRouteHome(); // Adiciona la ruta al boton de home
+addRouteHome("buttonHome"); // Adiciona la ruta al boton de home
 
 
 

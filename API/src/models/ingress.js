@@ -23,15 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     dateHourExit: DataTypes.DATE,
     motivo: DataTypes.TEXT,
     idPersonIngress: DataTypes.INTEGER,
-    idComputer: DataTypes.INTEGER,
-    createdAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    },
-    updatedAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    }
+    idComputer: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'ingress',

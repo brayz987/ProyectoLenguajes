@@ -15,6 +15,7 @@ module.exports = {
             identification: Joi.number().required(),
             idTypeIdentification: Joi.number().min(1).max(2).precision(1).required(),
             idTypePerson: Joi.number().min(1).max(2).precision(1).required(),
+            date: Joi.string()
         })
         
         const {error} = shemaCreate.validate(req.body);
@@ -32,6 +33,7 @@ module.exports = {
             model: Joi.string().min(3).max(255).required(),
             serial: Joi.string().min(3).max(255).required(),
             studentCode: Joi.number().required(),
+            date: Joi.string()  
         })
         
         const {error} = shemaCreate.validate(req.body);
@@ -91,6 +93,20 @@ module.exports = {
         if(error) return await res.status(400).json(error.details[0].message);
 
         return next();
+    },
+
+    async registerExit(req, res, next) {
+
+        // Validacion de datos
+        const shemaCreate = Joi.object({
+            id: Joi.number().min(100000).max(109999).required()
+        })
+        
+        const {error} = shemaCreate.validate(req.body);
+        if(error) return await res.status(400).json(error.details[0].message);
+
+        return next();
     }
+
 
 }

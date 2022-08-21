@@ -49,7 +49,7 @@
   cursor: pointer;
   display: inline-block;
   font-family: Raleway;
-  font-size: 12px;
+  font-size: 0.8rem;
   letter-spacing: 0;
   line-height: 1em;
   margin: 0;
@@ -101,7 +101,7 @@
     background-color: #102467;
 }
 .button-blue:before{
-    background-color: #255bfe;
+    background-color: #11468F;
 }
 
 
@@ -158,12 +158,12 @@
 }
 
 .color-blue:before{
-    background-color: #255bfe;
+    background-color: #11468F;
 }
 
 
 .color-blue-light {
-    background-color: #255bfe;
+    background-color: #11468F;
 }
 
 .color-blue-light:before{

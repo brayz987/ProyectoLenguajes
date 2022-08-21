@@ -55,5 +55,21 @@ module.exports = {
                     res.json({"ingressData": ingressData[0]});
                 }
             }
+    },
+
+    async registerExit(req, res) {
+        console.log(req.id)
+        await ingress
+            .update (
+                { dateHourExit: new Date() },
+                { where: { id: req.body.id } }
+            )
+            .then ( () => {
+                res.json({
+                    "error" : 0,
+                    "message": "Se ha registrado las salida correctamente"
+                })
+            })
+            .catch ( error => res.status(400).json(error));
     }
 }   

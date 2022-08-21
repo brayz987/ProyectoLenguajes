@@ -27,15 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     lastname: DataTypes.STRING,
     identification: DataTypes.BIGINT,
     idTypeIdentification: DataTypes.INTEGER,
-    idTypePerson: DataTypes.INTEGER,
-    createdAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    },
-    updatedAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    }
+    idTypePerson: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'person'

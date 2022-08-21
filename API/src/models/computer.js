@@ -33,14 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     serial: {
       allowNull: false,
       type: DataTypes.STRING
-    },
-    createdAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    },
-    updatedAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
     }
   }, {
     sequelize,

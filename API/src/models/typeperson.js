@@ -14,15 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   typePerson.init({
-    name: DataTypes.STRING,
-    createdAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    },
-    updatedAt: {
-      type: DataTypes.DATE(6),
-      defaultValue: DataTypes.NOW
-    }
+    name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'typePerson',

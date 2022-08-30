@@ -14,7 +14,7 @@ module.exports = {
             lastName: Joi.string().min(3).max(255).required(),
             identification: Joi.number().required(),
             idTypeIdentification: Joi.number().min(1).max(2).precision(1).required(),
-            idTypePerson: Joi.number().min(1).max(2).precision(1).required(),
+            idTypePerson: Joi.number().min(1).max(1).precision(1).required(),
             date: Joi.string()
         })
         
@@ -53,7 +53,8 @@ module.exports = {
             idTypeIdentification: Joi.number().min(1).max(2).required(),
             idTypePerson: Joi.number().min(1).max(2).required(),
 
-            studentCode: Joi.required(),
+            studentCode: Joi.number().required(),
+            cellphone: Joi.number().required(),
             email: Joi.string().required().email(),
             idCareer: Joi.number().min(1).max(10).required(),
             promotion: Joi.number().min(1).max(13).required(),
@@ -106,7 +107,39 @@ module.exports = {
         if(error) return await res.status(400).json(error.details[0].message);
 
         return next();
-    }
+    },
 
+    async registerGuest(req, res, next) {
+
+        // Validacion de datos
+        const shemaCreate = Joi.object({
+            name: Joi.string().required(),
+            lastName: Joi.string().required(),
+            idTypeIdentification: Joi.number().min(1).max(2).required(),
+            identification: Joi.number().required(),
+            motive: Joi.string().required()
+        })
+        
+        const {error} = shemaCreate.validate(req.body);
+        if(error) return await res.status(400).json(error.details[0].message);
+
+        res.locals.idTypePerson = 1;
+        return next();
+    },
+
+
+    async registerCarnet(req, res, next) {
+
+        // Validacion de datos
+        const shemaCreate = Joi.object({
+            studentCode: Joi.number().required()
+        })
+        
+        const {error} = shemaCreate.validate(req.body);
+        if(error) return await res.status(400).json(error.details[0].message);
+
+        res.locals.idTypePerson = 1;
+        return next();
+    }
 
 }

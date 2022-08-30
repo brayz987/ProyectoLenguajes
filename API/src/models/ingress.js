@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       }),
       ingress.belongsTo(models.computer, {
         foreignKey: 'idComputer'
+      }),
+      ingress.belongsTo(models.typeIngress, {
+        foreignKey: 'idTypeIngress'
       })
     }
   }
@@ -23,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     dateHourExit: DataTypes.DATE,
     motivo: DataTypes.TEXT,
     idPersonIngress: DataTypes.INTEGER,
-    idComputer: DataTypes.INTEGER
+    idComputer: DataTypes.INTEGER,
+    idTypeIngress: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'ingress',

@@ -26,6 +26,7 @@ module.exports = {
                 .create({
                     studentCode: req.body.studentCode,
                     email: req.body.email,
+                    cellphone: req.body.cellphone,
                     idCareer: req.body.idCareer,
                     promotion: req.body.promotion,
                     idPerson: res.locals.person,
@@ -55,6 +56,7 @@ module.exports = {
             });
         } else {
             res.locals.person = studentExist[0].dataValues.idperson;
+            res.locals.idStudent = studentExist[0].dataValues.id;
             next();
         }
     },
@@ -65,7 +67,7 @@ module.exports = {
         // Se valida si ya existe el estudiante por el codigo estudiantil 
 
         const studentData = await student.findAll({
-            attributes: ['id','email','idCareer'],
+            attributes: ['id','email','idCareer','cellphone','studentCode','promotion'],
             where: {
                 studentCode: req.body.studentCode
             },

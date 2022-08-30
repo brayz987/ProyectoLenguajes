@@ -34,7 +34,11 @@ const inputValid = (value, id) => {
         case "registerCode":
             regex = /^10([0-9]{4})$/g;
             break;
+        case "registerCodeCarnet":
+            regex = /^20([0-9]{4})$/g;
+            break;
         case "code":
+        case "modalSudentCode":
             regex = /^1([0]{3})([0-9]{5})$/g;
             break;
         case "identification":

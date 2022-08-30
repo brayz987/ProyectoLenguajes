@@ -16,6 +16,10 @@ module.exports = {
         }
       },
       requestDate: {
+        allowNull: true,
+        type: Sequelize.DATE
+      },
+      closeDate: {
         type: Sequelize.DATE
       },
       state: {
@@ -29,7 +33,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    },
+    {
+      initialAutoIncrement: 200000,
+    }
+    );
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('carnetRequests');

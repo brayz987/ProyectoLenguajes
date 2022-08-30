@@ -12,6 +12,7 @@ module.exports = {
                 dateHourIngress: new Date(),
                 idPersonIngress: res.locals.person,
                 idComputer: res.locals.computer.dataValues.id,
+                idTypeIngress: 1
             })
             .then ( ingress => {
                 res.json({
@@ -71,5 +72,25 @@ module.exports = {
                 })
             })
             .catch ( error => res.status(400).json(error));
-    }
+    },
+
+
+    async registerGuest(req, res) {
+        await ingress
+            .create ({
+                dateHourIngress: new Date(),
+                idPersonIngress: res.locals.person,
+                motivo: req.body.motive,
+                idTypeIngress: 2
+            })
+            .then ( ingress => {
+                res.json({
+                    "people": res.locals.people,
+                    "ingress": ingress
+                })
+            })
+            .catch ( error => res.status(400).json(error));
+    },
+
+
 }   

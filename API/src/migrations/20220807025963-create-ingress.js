@@ -27,9 +27,17 @@ module.exports = {
       },
       idComputer: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'computers',
+          key: 'id'
+        }
+      },
+      idTypeIngress: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'typeIngresses',
           key: 'id'
         }
       },

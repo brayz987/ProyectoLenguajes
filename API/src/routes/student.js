@@ -19,7 +19,7 @@ router.post('/register', validateData.registerStudent , validateToken, personCon
 
 
 // Esta ruta es para obtener la info basica de un estudiante
-router.get('/getStudent', validateData.getStudent , validateToken, studentController.getStudent );
+router.post('/getStudent', validateData.getStudent , validateToken, studentController.getStudent );
 
 
 module.exports = router;

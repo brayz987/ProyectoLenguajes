@@ -27,7 +27,9 @@ const formSearchIdButton = document.getElementById("formSearchIdButton");
 const formSearchId = document.getElementById("formSearchId");
 const formPortatil = document.getElementById("formPortatil");
 const formPortatilButton = document.getElementById("formPortatilButton");
-const registerExit = document.getElementById("registerExit");
+const registerExit = document.getElementById("registerExit1");
+const registerExit2 = document.getElementById("registerExit2");
+const viewMoreButton = document.getElementById("viewMore");
 const labelCode = document.getElementById("labelCode");
 const buttonModalAlert = document.getElementById("buttonModalAlert");
 const alertMessage = document.getElementById("alertMessage");
@@ -128,6 +130,17 @@ formSearchIdButton.addEventListener('click', (e) => {
 
 
 
+// Evento para mostrar mas informacion 
+
+viewMoreButton.addEventListener('click', (e)=> {
+    document.getElementById('personalDataCard').removeAttribute('hidden');
+    viewMoreButton.setAttribute('hidden','')
+    
+    if( document.getElementById('exitDate').value === '' ){
+        registerExit2.removeAttribute('hidden','')
+    }
+})
+
 
 
 
@@ -177,11 +190,14 @@ const fillData = (data) => {
 
 
 const addTickedInfo = (data) => {
-    const template = document.createElement('template');
+
     const ingressData = data.ingressData;
+    document.getElementById('idTicket').value = ingressData.id;
+
+
     const ingress = ingressData.dateHourIngress.split(' ');
-    const ingressday = ingress[0];
-    const ingresshour = ingress[1];
+    document.getElementById('ingressDate').value = ingress[0];
+    document.getElementById('ingressHour').value = ingress[1];
 
     let exit = ingressData.dateHourExit;
     let exitday = "";
@@ -192,53 +208,11 @@ const addTickedInfo = (data) => {
         exithour = exit[1];
     }
 
-    template.innerHTML = `
-        <fieldset class="mb-3 row ">
-            <legend class="col-form-legend col-xs-4">Informacion del Ticket</legend>
-            <div class="col-xs-8">
-                <div class="mb-3 row">
-                    <div class="col-md-12 col-sm-12">
-                        <label for="inputName" class="col-xs-4 col-form-label">ID:</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" name="idTicket" id="idTicket" placeholder="idTicket" disabled value="${data.ingressData.id}" >
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="mb-3 row">
-                    <div class="col-md-6 col-sm-12">
-                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Fecha de Ingreso:</label>
-                        <div class="col-xs-8">
-                            <input type="date" class="form-control"  disabled value="${ingressday}" >
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Hora de Ingreso:</label>
-                        <div class="col-xs-8">
-                            <input type="time" class="form-control"  disabled value="${ingresshour}" >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <div class="col-md-6 col-sm-12">
-                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Fecha de Salida:</label>
-                        <div class="col-xs-8">
-                            <input type="date" class="form-control"  disabled value="${exitday}" >
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Hora de Salida:</label>
-                        <div class="col-xs-8">
-                            <input type="time" class="form-control"  disabled value="${exithour}" >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-    `;
-    formPortatil.prepend(template.content);
+    document.getElementById('exitDate').value = exitday;
+    document.getElementById('exitHour').value = exithour;
+    
+    document.getElementById('registerInfo').removeAttribute('hidden');
+    document.getElementById('personalDataCard').setAttribute('hidden','');
 }
 
 
@@ -246,14 +220,22 @@ const addTickedInfo = (data) => {
 const addButtonRegisterExit = (data) => {
     if(data.ingressData.dateHourExit !== null){
         formPortatilButton.setAttribute('hidden','hidden');
+        registerExit2.setAttribute('hidden','');
+        console.log(registerExit2);
+
     }
 
     if(data.ingressData.dateHourExit === null){
         registerExit.removeAttribute('hidden');
         formPortatilButton.setAttribute('hidden','hidden');
 
+
     }
 }
+
+
+
+// Eventos para cerrar el registro
 
 registerExit.addEventListener('click', (e)=>{
     e.preventDefault();
@@ -271,6 +253,22 @@ registerExit.addEventListener('click', (e)=>{
 
 })
 
+
+registerExit2.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const id = document.getElementById('idTicket').value;
+    const jsonData = {
+        id: id
+    };
+    
+    axios.post(ApiURL+'/ingress/registerExit',jsonData, optionHeader)
+        .then(res => {
+            alertMessage.textContent = res.data.message;
+            buttonModalAlert.click();
+            addRouteHome("okModalButton");
+        })
+
+})
 
 //Validacion del Campos Formulario de Registro
 formPortatil.addEventListener("change", (e) => {

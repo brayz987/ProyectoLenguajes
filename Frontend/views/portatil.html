@@ -23,10 +23,10 @@
         <!-- Modal de Alerta -->
 
 
-        <div class="modal fade" id="ModalAlert" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-        tabindex="-1">
-        <div class="modal-dialog ">
-            <div class="modal-content rounded-0">
+        <div class="modal fade" id="ModalAlert" data-bs-backdrop="static" aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content rounded-0">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalToggleLabel2">Alerta</h5>
                     </div>
@@ -35,15 +35,18 @@
                             <p id="alertMessage"></p>
                             <p id="accessCode" class="fs-1 fw-bold text-center"></p>
                             <div class="d-flex justify-content-center">
-                                <button type="button" class="button color-yellow d-none" id="copyButton" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Codigo Copiado!" ><span>Copiar</span></button>
-                            </div>  
+                                <button type="button" class="button color-yellow d-none" id="copyButton"
+                                    data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
+                                    data-bs-content="Codigo Copiado!"><span>Copiar</span></button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="button button-blue" data-bs-dismiss="modal" id="okModalButton"  ><span>OK</span></button>
+                        <button class="button button-blue" data-bs-dismiss="modal"
+                            id="okModalButton"><span>OK</span></button>
                     </div>
+                </div>
             </div>
-        </div>
         </div>
         <a hidden="hidden" data-bs-toggle="modal" href="#ModalAlert" role="button" id="buttonModalAlert"></a>
 
@@ -51,7 +54,8 @@
 
         <!-- Modal de seleccion de registro -->
 
-        <div class="modal fade" id="tipoRegistro" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="tipoRegistroLabel" tabindex="-1">
+        <div class="modal fade" id="tipoRegistro" data-bs-backdrop="static" aria-hidden="true"
+            aria-labelledby="tipoRegistroLabel" tabindex="-1">
             <div class="modal-dialog ">
                 <div class="modal-content rounded-0">
                     <div class="modal-header">
@@ -72,8 +76,8 @@
         <!-- Modal de busqueda de registro -->
 
 
-        <div class="modal fade" id="modalSearchId"  data-bs-backdrop="static" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-            tabindex="-1">
+        <div class="modal fade" id="modalSearchId" data-bs-backdrop="static" aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog ">
                 <div class="modal-content rounded-0">
                     <form id="formSearchId">
@@ -88,8 +92,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="button button-blue" type="submit" id="formSearchIdButton"><span>Buscar</span></button>
-                            <button hidden="hidden" type="button" id="SearchButtonDismiss" data-bs-dismiss="modal"></button>
+                            <button class="button button-blue" type="submit"
+                                id="formSearchIdButton"><span>Buscar</span></button>
+                            <button hidden="hidden" type="button" id="SearchButtonDismiss"
+                                data-bs-dismiss="modal"></button>
                         </div>
                     </form>
                 </div>
@@ -111,11 +117,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="" class="form-label">Id del registro es invalido por favor verifiquelo </label>
+                                <label for="" class="form-label">Id del registro es invalido por favor verifiquelo
+                                </label>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="button button-blue"  type="button" data-bs-target="#modalSearchId" data-bs-toggle="modal"><span>Atras</span></button>
+                            <button class="button button-blue" type="button" data-bs-target="#modalSearchId"
+                                data-bs-toggle="modal"><span>Atras</span></button>
                         </div>
                     </form>
                 </div>
@@ -140,7 +148,77 @@
             </div>
 
         </div>
-        <div class="card p-4 rounded-0">
+
+
+
+
+
+
+        <div id="registerInfo" hidden>
+            <div class="card p-4 rounded-0 mb-3">
+                <fieldset class="mb-3 row ">
+                    <legend class="col-form-legend col-xs-4">Informacion del Ticket</legend>
+                    <div class="col-xs-8">
+                        <div class="mb-3 row">
+                            <div class="col-md-12 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">ID:</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="idTicket" id="idTicket"
+                                        placeholder="idTicket" disabled value="">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Fecha de
+                                    Ingreso:</label>
+                                <div class="col-xs-8">
+                                    <input type="date" class="form-control" id="ingressDate" disabled value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Hora de
+                                    Ingreso:</label>
+                                <div class="col-xs-8">
+                                    <input type="time" class="form-control" id="ingressHour" disabled value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Fecha de
+                                    Salida:</label>
+                                <div class="col-xs-8">
+                                    <input type="date" class="form-control" disabled value="" id="exitDate">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Hora de
+                                    Salida:</label>
+                                <div class="col-xs-8">
+                                    <input type="time" class="form-control" disabled value="" id="exitHour">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row">
+                    <div class="col d-flex  flex-row-reverse gap-2">
+                        <button class="button button-blue" type="submit" id="viewMore"><span class="text">Mostrar
+                                mas</span></button>
+                        <button class="button button-blue" type="submit" id="registerExit1" hidden><span
+                                class="text">Registrar Salida</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card p-4 rounded-0 mb-4" id="personalDataCard">
             <form id="formPortatil">
                 <fieldset class="mb-3 row ">
                     <legend class="col-form-legend col-xs-4">Datos Personales</legend>
@@ -168,7 +246,7 @@
                                     <option value="0">Seleccionar...</option>
                                     <option value="1">Invitado</option>
                                     <option value="2">Miembro de la Universidad</option>
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -176,9 +254,12 @@
 
                         <div class="mb-3 row">
                             <div class="col-md-6 col-sm-12">
-                                <label for="inputName" class="col-xs-4 col-form-label" id="labelidTypeIdentification">Tipo de Identificacion:</label>
+                                <label for="inputName" class="col-xs-4 col-form-label"
+                                    id="labelidTypeIdentification">Tipo
+                                    de Identificacion:</label>
                                 <div class="col-xs-8">
-                                    <select class="form-control" name="idTypeIdentification" id="idTypeIdentification" disabled>
+                                    <select class="form-control" name="idTypeIdentification" id="idTypeIdentification"
+                                        disabled>
                                         <option value="0">Seleccionar...</option>
                                         <option value="1">Cedula de Ciudadania</option>
                                         <option value="2">Tarjeta de Identidad</option>
@@ -186,7 +267,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
-                                <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Codigo Estudiantil:</label>
+                                <label for="inputName" class="col-xs-4 col-form-label" id="labelCode">Codigo
+                                    Estudiantil:</label>
                                 <div class="col-xs-8">
                                     <input type="text" class="form-control" name="code" id="code"
                                         placeholder="Identificacion" disabled>
@@ -210,7 +292,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
-                                <label for="inputName" class="col-xs-4 col-form-label">Modelo del equipo:</label>
+                                <label for="inputName" class="col-xs-4 col-form-label">Modelo del
+                                    equipo:</label>
                                 <div class="col-xs-8">
                                     <input type="text" class="form-control" name="model" id="model"
                                         placeholder="Modelo">
@@ -230,8 +313,11 @@
 
                 <div class="row">
                     <div class="d-flex  flex-row-reverse ">
-                        <button class="button button-blue" type="submit" id="formPortatilButton"><span class="text">Enviar</span></button>
-                        <button class="button button-blue" type="submit" id="registerExit" hidden><span class="text">Registrar Salida</span></button>
+                        <button class="button button-blue" type="submit" id="formPortatilButton"><span
+                            class="text">Enviar</span></button>
+                        <button class="button button-blue" type="submit" id="registerExit2" hidden><span
+                            class="text">Registrar Salida</span></button>
+
                     </div>
                 </div>
             </form>

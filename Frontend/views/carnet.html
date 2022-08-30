@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Portatil</title>
+    <title>Registro Carnet</title>
     <link rel="stylesheet" href="../style/default.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/3aaaae7e62.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/3aaaae7e62.js" crossorigin="anonymous"></script>}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body class="background">
@@ -20,10 +24,36 @@
         <a hidden="hidden" data-bs-toggle="modal" href="#modalInvalidDataStudent" role="button" id="buttonInvalidDataStudent"></a>
 
 
+        <!-- Modal de Alerta -->
+
+
+        <div class="modal fade" id="ModalAlert" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog ">
+            <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel2">Alerta</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <p id="alertMessage"></p>
+                            <p id="accessCode" class="fs-1 fw-bold text-center"></p>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="button color-yellow d-none" id="copyButton" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Codigo Copiado!" ><span>Copiar</span></button>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button button-blue" data-bs-dismiss="modal" id="okModalButton"  ><span>OK</span></button>
+                    </div>
+            </div>
+        </div>
+        </div>
+        <a hidden="hidden" data-bs-toggle="modal" href="#ModalAlert" role="button" id="buttonModalAlert"></a>
 
         <!-- Modal de seleccion de registro -->
 
-        <div class="modal fade" id="validacionCarnet" aria-hidden="true" aria-labelledby="tipoRegistroLabel" tabindex="-1">
+        <div class="modal fade" id="validacionCarnet" data-bs-backdrop="static"  aria-hidden="true" aria-labelledby="tipoRegistroLabel" tabindex="-1">
             <div class="modal-dialog ">
               <div class="modal-content rounded-0">
                 <div class="modal-header">
@@ -44,7 +74,7 @@
         <!-- Modal de busqueda de registro -->
 
 
-        <div class="modal fade" id="modalSearchId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        <div class="modal fade" id="modalSearchId" data-bs-backdrop="static"   aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
             tabindex="-1">
             <div class="modal-dialog ">
                 <div class="modal-content rounded-0">
@@ -55,8 +85,8 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="" class="form-label">Codigo de Registro: </label>
-                                <input type="text" class="form-control" name="idRegistro" id="idRegistro" required>
-                                <small id="helpId" class="form-text text-muted">Codigo de 3 a 4 digitos</small>
+                                <input type="text" class="form-control" name="registerCodeCarnet" id="registerCodeCarnet" required>
+                                <small id="helpId" class="form-text text-muted">Codigo de 6 digitos (Formato: 200XXX)</small>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -72,11 +102,11 @@
         <!-- Modal campos invalidos Busqueda Registro -->
 
 
-        <div class="modal fade" id="modalInvalidDataId" aria-hidden="true" aria-labelledby="modalSearchStudentLabel"
+        <div class="modal fade" id="modalInvalidDataId" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="modalSearchStudentLabel"
         tabindex="-1">
         <div class="modal-dialog ">
             <div class="modal-content rounded-0">
-                <form id="formSearchStudent" >
+                <form id="formSearchId" >
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalToggleLabel2">Busqueda de Registro</h5>
                     </div>
@@ -102,7 +132,7 @@
         <!-- Modal de busqueda de estudiante -->
 
 
-        <div class="modal fade" id="modalSearchStudent" aria-hidden="true" aria-labelledby="modalSearchStudentLabel"
+        <div class="modal fade" id="modalSearchStudent" data-bs-backdrop="static"  aria-hidden="true" aria-labelledby="modalSearchStudentLabel"
             tabindex="-1">
             <div class="modal-dialog ">
                 <div class="modal-content rounded-0">
@@ -113,7 +143,7 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="" class="form-label">Id de Estudiante: </label>
-                                <input type="text" class="form-control" name="code" id="code" required>
+                                <input type="text" class="form-control" name="modalSudentCode" id="modalSudentCode" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -134,7 +164,6 @@
         tabindex="-1">
         <div class="modal-dialog ">
             <div class="modal-content rounded-0">
-                <form id="formSearchStudent" >
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalToggleLabel2">Busqueda de Estudiante</h5>
                     </div>
@@ -146,7 +175,6 @@
                     <div class="modal-footer">
                         <button class="button button-blue" type="button" data-bs-target="#modalSearchStudent" data-bs-toggle="modal"><span>Atras</span></button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -166,6 +194,54 @@
             </div>
 
         </div>
+
+
+        <div class="card p-4 rounded-0 mb-3" id="registerInfo" hidden>
+            <fieldset class="mb-3 row ">
+                <legend class="col-form-legend col-xs-4">Informacion del Registro</legend>
+                <div class="col-xs-8">
+                    <div class="mb-3 row">
+                        <div class="col-md-6 col-sm-12">
+                            <label for="inputName" class="col-xs-4 col-form-label">Id:</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" name="idRegister" id="idRegister" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="inputName" class="col-xs-4 col-form-label">Estado:</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" name="state" id="state" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6 col-sm-12">
+                            <label for="inputName" class="col-xs-4 col-form-label">Fecha de Solicitud:</label>
+                            <div class="col-xs-8">
+                                <input type="date" class="form-control" name="requestDate" id="requestDate" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="inputName" class="col-xs-4 col-form-label">Fecha de Cierre:</label>
+                            <div class="col-xs-8">
+                                <input  type="date" class="form-control" name="closeDate" id="closeDate" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </fieldset>
+        </div>
+
+
+
+
+
         <div class="card p-4 rounded-0">
             <form id="formCarnet">
                 <fieldset class="mb-3 row ">
@@ -176,14 +252,14 @@
                                 <label for="inputName" class="col-xs-4 col-form-label">Nombres:</label>
                                 <div class="col-xs-8">
                                     <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="Nombres">
+                                        placeholder="Nombres" disabled>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <label for="inputName" class="col-xs-4 col-form-label">Apellidos:</label>
                                 <div class="col-xs-8">
                                     <input type="text" class="form-control" name="lastName" id="lastName"
-                                        placeholder="Apellido">
+                                        placeholder="Apellido" disabled>
                                 </div>
                             </div>
                         </div>
@@ -192,14 +268,14 @@
                                 <label for="inputName" class="col-xs-4 col-form-label">Codigo Estudiantil:</label>
                                 <div class="col-xs-8">
                                     <input type="text" class="form-control" name="code" id="code"
-                                        placeholder="Codigo Estudiantil">
+                                        placeholder="Codigo Estudiantil" disabled>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <label for="inputName" class="col-xs-4 col-form-label">Correo Institucional:</label>
                                 <div class="col-xs-8">
                                     <input  type="text" class="form-control" name="email" id="email"
-                                        placeholder="example@uniempresarial.edu.co">
+                                        placeholder="example@uniempresarial.edu.co" disabled>
                                 </div>
                             </div>
                         </div>
@@ -210,14 +286,14 @@
                             <label for="inputName" class="col-xs-4 col-form-label">Numero de Celular:</label>
                             <div class="col-xs-8">
                                 <input  type="text" class="form-control" name="cellphone" id="cellphone"
-                                    placeholder="Numero de Celular">
+                                    placeholder="Numero de Celular" disabled>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <div class="col-md-6 col-sm-12">
                                 <label for="inputName" class="col-xs-4 col-form-label">Carrera:</label>
                                 <div class="col-xs-8">
-                                    <select class="form-control" name="career" id="career">
+                                    <select class="form-control" name="career" id="career" disabled>
                                         <option value="0" >Seleccionar...</option>
                                         <option value="1">ADMINISTRACIÓN DE EMPRESAS</option>
                                         <option value="2">CONTADURÍA PÚBLICA Y FINANZAS INTERNACIONALES</option>
@@ -235,7 +311,7 @@
                                 <label for="inputName" class="col-xs-4 col-form-label">Promocion:</label>
                                 <div class="col-xs-8">
                                     <input  type="number" class="form-control" name="promotion" id="promotion" min="1" max="12"
-                                        placeholder="Promocion">
+                                        placeholder="Promocion" disabled>
                                 </div>
                             </div>
                         </div>

@@ -24,6 +24,7 @@ const users = require('./routes/users');
 const computers = require('./routes/computers');
 const students = require('./routes/student');
 const ingress = require('./routes/ingress');
+const carnet = require('./routes/carnet');
 
 
 // Inicializar Rutas
@@ -31,6 +32,7 @@ app.use('/api/users', users);
 app.use('/api/computers', computers);
 app.use('/api/students', students);
 app.use('/api/ingress', ingress);
+app.use('/api/carnet', carnet);
 
 
 // Iniciar Server

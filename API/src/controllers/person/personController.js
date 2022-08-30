@@ -19,6 +19,16 @@ module.exports = {
         });
 
 
+        let idTypePerson;
+
+        if (typeof res.locals.idTypePerson === 'undefined' || res.locals.idTypePerson === null){
+            idTypePerson = req.body.idTypePerson
+        } else {
+            idTypePerson = res.locals.idTypePerson;
+        }
+
+
+
         if (personExist.length === 0) {
             await person
                 .create({
@@ -26,7 +36,7 @@ module.exports = {
                     lastname: req.body.lastName,
                     identification: req.body.identification,
                     idTypeIdentification: req.body.idTypeIdentification,
-                    idTypePerson: req.body.idTypePerson
+                    idTypePerson: idTypePerson
                 })
                 .then(person => {
                     res.locals.person = person.dataValues.id;

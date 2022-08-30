@@ -11,6 +11,9 @@ module.exports = {
       studentCode: {
         type: Sequelize.INTEGER
       },
+      cellphone: {
+        type: Sequelize.BIGINT
+      },
       email: {
         type: Sequelize.STRING
       },

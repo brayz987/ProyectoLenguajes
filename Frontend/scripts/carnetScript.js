@@ -8,13 +8,20 @@ import {
 } from "./validations.js";
 
 import {
-    optionHeader,
     enablePopovers,
     convertDataJson,
     disabledForm,
     showAccessCode,
     copyText
 } from "./generalFuntion.js"
+
+import {
+    _g0,
+    _g1
+} from './storage.js';
+
+_g0();
+
 
 addRouteHome("buttonHome"); // Adiciona la ruta al boton de home
 enablePopovers();
@@ -73,7 +80,7 @@ formSearchIdButton.addEventListener('click', async (e) => {
     e.preventDefault();
     const id = document.getElementById('registerCodeCarnet').value;
     if (validarForm(idValid) === -1) {
-        await axios.get(ApiURL + '/carnet/' + id, optionHeader)
+        await axios.get(ApiURL + '/carnet/' + id, _g1)
             .then(res => {
                 if (res.data.error) {
                     alertMessage.textContent = res.data.message;
@@ -81,7 +88,7 @@ formSearchIdButton.addEventListener('click', async (e) => {
                     homeButtonOk();
                 } else {
                     fillCarnetRequestData(res.data);
-                    document.getElementById('formCarnetButton').setAttribute('hidden', '') ;
+                    document.getElementById('formCarnetButton').setAttribute('hidden', '');
                 }
             })
             .catch(error => {
@@ -99,7 +106,7 @@ const fillCarnetRequestData = (data) => {
     document.getElementById('idRegister').value = data.id;
     document.getElementById('state').value = data.state;
     document.getElementById('requestDate').value = data.requestDate.split(' ')[0];
-    document.getElementById('closeDate').value = (data.closeDate == null) ? "" : data.closeDate.split(' ')[0] ;
+    document.getElementById('closeDate').value = (data.closeDate == null) ? "" : data.closeDate.split(' ')[0];
     document.getElementById('name').value = data.student.person.name;
     document.getElementById('lastName').value = data.student.person.lastname;
     document.getElementById('code').value = data.student.studentCode;
@@ -132,8 +139,8 @@ formSearchStudentButton.addEventListener('click', (e) => {
 const getStudentData = async () => {
     const modalSudentCode = document.getElementById("modalSudentCode").value
     await axios.post(ApiURL + '/students/getStudent', {
-        "studentCode" : modalSudentCode
-    }, optionHeader)
+            "studentCode": modalSudentCode
+        }, _g1)
         .then(res => {
             if (res.data.error) {
                 document.getElementById("buttonInvalidDataStudent").click();
@@ -183,8 +190,8 @@ const fillStudentData = (data) => {
 formCarnetButton.addEventListener('click', async (e) => {
     e.preventDefault();
     await axios.post(ApiURL + '/carnet/register', {
-        "studentCode" : document.getElementById('code').value
-    }, optionHeader)
+            "studentCode": document.getElementById('code').value
+        }, _g1)
         .then(res => {
             if (res.data.error) {
                 alertMessage.textContent = res.data.message;
@@ -203,7 +210,7 @@ formCarnetButton.addEventListener('click', async (e) => {
 // Funcion para que el boton ok de la alerta lo envie hacia el inicio
 
 const homeButtonOk = () => {
-    document.getElementById('okModalButton').addEventListener('click', ()=> {
+    document.getElementById('okModalButton').addEventListener('click', () => {
         window.location.href = ".."
     })
 }

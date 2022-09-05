@@ -26,7 +26,7 @@ module.exports = {
         if (validEmailDb !== null) return await res.status(400).json({message: 'El email ya existe'});
 
 
-        // Se realiza encripcion de la contraseña
+        // Se realiza el hash de la contraseña
 
         const salt = await bcrypt.genSalt(10);
         const password = await bcrypt.hash(req.body.password, salt);

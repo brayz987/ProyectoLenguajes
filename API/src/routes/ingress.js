@@ -19,6 +19,8 @@ router.post('/getComputerRegister', validateData.getIngressComputer , validateTo
 router.post('/registerExit', validateData.registerExit , validateToken, ingressController.registerExit);
 router.post('/registerGuest', validateData.registerGuest , validateToken, personController.create, ingressController.registerGuest);
 
+router.get('/guest/:id', validateToken, ingressController.getGuest);
+
 
 
 

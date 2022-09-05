@@ -10,13 +10,6 @@ const convertDataJson = (data) => {
 }
 
 
-// Esta constate adiciona el token al request axios
-const optionHeader = {
-    headers: {
-        "auth-token": localStorage.getItem("AppToken")
-    }
-}
-
 // Funcion para copiar un texto en especifico
 const copyText = (text) => {
     navigator.clipboard.writeText(text.textContent);
@@ -68,7 +61,6 @@ const disabledForm = () => {
 
 export {
     convertDataJson,
-    optionHeader,
     copyText,
     showAccessCode,
     enablePopovers,

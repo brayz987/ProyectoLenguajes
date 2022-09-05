@@ -9,13 +9,18 @@ import {
 } from "./validations.js";
 
 import {
-    optionHeader,
     showAccessCode,
     enablePopovers,
     convertDataJson,
     disabledForm
 } from "./generalFuntion.js"
 
+import {
+    _g0,
+    _g1
+} from './storage.js';
+
+_g0();
 
 addRouteHome("buttonHome"); // Adiciona la ruta al boton de home
 enablePopovers(); // Activa los popovers
@@ -149,7 +154,7 @@ viewMoreButton.addEventListener('click', (e)=> {
 
 const getIngressData = async (data) => {
     data = convertDataJson(data);
-    await axios.post(ApiURL+'/ingress/getComputerRegister',data, optionHeader)
+    await axios.post(ApiURL+'/ingress/getComputerRegister',data, _g1)
         .then(res => {
             if(res.data.error){
                 document.getElementById("buttonInvalidData").click();
@@ -244,7 +249,7 @@ registerExit.addEventListener('click', (e)=>{
         id: id
     };
     
-    axios.post(ApiURL+'/ingress/registerExit',jsonData, optionHeader)
+    axios.post(ApiURL+'/ingress/registerExit',jsonData, _g1)
         .then(res => {
             alertMessage.textContent = res.data.message;
             buttonModalAlert.click();
@@ -261,7 +266,7 @@ registerExit2.addEventListener('click', (e)=>{
         id: id
     };
     
-    axios.post(ApiURL+'/ingress/registerExit',jsonData, optionHeader)
+    axios.post(ApiURL+'/ingress/registerExit',jsonData, _g1)
         .then(res => {
             alertMessage.textContent = res.data.message;
             buttonModalAlert.click();
@@ -307,7 +312,7 @@ const sendRegisterPortatilStudent = async (data) => {
         "serial": data.get('serial'),
         "studentCode": data.get('studentCode'),
         "brand": data.get('brand')
-    },optionHeader)
+    },_g1)
         .then(res => {
             if(res.data.error){
                 alertMessage.textContent = res.data.message;
@@ -328,7 +333,7 @@ const sendRegisterPortatilStudent = async (data) => {
 
 const sendRegisterPortatilGuest = async (data) => {
     data = convertDataJson(data)
-    await axios.post(ApiURL+'/computers/registerComputerGuest', data, optionHeader)
+    await axios.post(ApiURL+'/computers/registerComputerGuest', data, _g1)
         .then(res => {
             if(res.data.error){
                 alertMessage.textContent = res.data.message;

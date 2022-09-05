@@ -19,39 +19,101 @@
 <body class="background">
     <div class="container">
 
-                <!-- Modal de Alerta -->
+        <!-- Modal de Alerta -->
 
 
-                <div class="modal fade" id="ModalAlert" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-                tabindex="-1">
-                <div class="modal-dialog ">
-                    <div class="modal-content rounded-0">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggleLabel2">Alerta</h5>
+        <div class="modal fade" id="ModalAlert" data-bs-backdrop="static" aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel2">Alerta</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <p id="alertMessage"></p>
+                            <p id="accessCode" class="fs-1 fw-bold text-center"></p>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="button color-yellow d-none" id="copyButton"
+                                    data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
+                                    data-bs-content="Codigo Copiado!"><span>Copiar</span></button>
                             </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <p id="alertMessage"></p>
-                                    <p id="accessCode" class="fs-1 fw-bold text-center"></p>
-                                    <div class="d-flex justify-content-center">
-                                        <button type="button" class="button color-yellow d-none" id="copyButton" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Codigo Copiado!" ><span>Copiar</span></button>
-                                    </div>  
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="button button-blue" data-bs-dismiss="modal" id="okModalButton"  ><span>OK</span></button>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button button-blue" data-bs-dismiss="modal" 
+                            id="okModalButton"><span>OK</span></button>
                     </div>
                 </div>
-                </div>
-                <a hidden="hidden" data-bs-toggle="modal" href="#ModalAlert" role="button" id="buttonModalAlert"></a>
+            </div>
+        </div>
+        <a hidden="hidden" data-bs-toggle="modal" href="#ModalAlert" role="button" id="buttonModalAlert"></a>
 
-                
-          <!-- Registro nuevo -->
-          
+
+        <!-- Modal Accion -->
+
+
+        <div class="modal fade" id="ModalAction" data-bs-backdrop="static" aria-hidden="true"
+            aria-labelledby="tipoRegistroLabel" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Tipo de Registro</h5>
+                    </div>
+                    <div class="modal-body">
+                        Por favor indique la acción a realizar
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button button-blue" data-bs-target="#modalSearchId"
+                            data-bs-toggle="modal"><span>Validar Estado</span></button>
+                        <button class="button button-blue" data-bs-target="#modalSearchStudent"
+                            data-bs-toggle="modal"><span>Registrar Nueva Entrada </span></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <a hidden="hidden" data-bs-toggle="modal" href="#ModalAction" role="button" id="buttonModalAction"></a>
+
+
+        <!-- Modal de busqueda de registro -->
+
+
+        <div class="modal fade" id="modalSearchId" data-bs-backdrop="static" aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content rounded-0">
+                    <form id="formSearchId">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel2">Busqueda de Registro</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Codigo de Registro: </label>
+                                <input type="text" class="form-control" name="registerId" id="registerId" required>
+                                <small id="helpId" class="form-text text-muted">Codigo de 6 digitos (Formato:
+                                    100XXX)</small>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="button button-blue" type="submit" id="formSearchIdButton"
+                                data-bs-dismiss="modal" name="formSearchIdButton"><span>Buscar</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Registro nuevo -->
+
         <div class="row pt-5 pb-3">
             <div class="col-1">
-                <button class="button button-blue" role="button" id="buttonHome"><span class="text"><i class="fa-solid fa-house-chimney fa-lg"></i></span></button>
+                <button class="button button-blue" role="button" id="buttonHome"><span class="text"><i
+                            class="fa-solid fa-house-chimney fa-lg"></i></span></button>
 
             </div>
             <div class="col-10">
@@ -59,70 +121,140 @@
             </div>
 
         </div>
-        <div class="card p-4 rounded-0">
-            <form id="formInvite" >
+
+
+        <div id="registerInfo" hidden>
+            <div class="card p-4 rounded-0 mb-3">
                 <fieldset class="mb-3 row ">
-                    <legend class="col-form-legend col-xs-4">Datos Personales</legend>
+                    <legend class="col-form-legend col-xs-4">Informacion del Ticket</legend>
                     <div class="col-xs-8">
                         <div class="mb-3 row">
-                            <div class="col-md-6 col-sm-12">
-                                <label for="inputName" class="col-xs-4 col-form-label">Nombres:</label>
+                            <div class="col-md-12 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">ID:</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="Nombre">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <label for="inputName" class="col-xs-4 col-form-label">Apellidos:</label>
-                                <div class="col-xs-8">
-                                    <input type="text" class="form-control" name="lastName" id="lastName"
-                                        placeholder="Apellido">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <div class="col-md-6 col-sm-12">
-                                <label for="" class="form-label">Tipo de Identificacion</label>
-                                <select class="form-control" name="idTypeIdentification" id="typeIdentification">
-                                    <option value="0" >Seleccionar...</option>
-                                    <option value="1">Cedula de Ciudadania</option>
-                                    <option value="2">Tarjeta de Identidad</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <label for="inputName" class="col-xs-4 col-form-label">Numero de identificacion:</label>
-                                <div class="col-xs-8">
-                                    <input type="text" class="form-control" name="identification" id="identification"
-                                        placeholder="Identificacion" disabled>
+                                    <input type="text" class="form-control" name="idTicket" id="idTicket"
+                                        placeholder="idTicket" disabled value="">
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="mb-3 row">
-                            <label for="inputName" class="col-xs-4 col-form-label">Motivo de Ingreso:</label>
-                            <div class="col-xs-8">
-                                <textarea  type="text" class="form-control" name="motive" id="motive"
-                                    placeholder="Name"></textarea>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Fecha de
+                                    Ingreso:</label>
+                                <div class="col-xs-8">
+                                    <input type="date" class="form-control" id="ingressDate" disabled value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Hora de
+                                    Ingreso:</label>
+                                <div class="col-xs-8">
+                                    <input type="time" class="form-control" id="ingressHour" disabled value="">
+                                </div>
                             </div>
                         </div>
 
+                        <div class="mb-3 row">
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Fecha de
+                                    Salida:</label>
+                                <div class="col-xs-8">
+                                    <input type="date" class="form-control" disabled value="" id="exitDate">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label for="inputName" class="col-xs-4 col-form-label">Hora de
+                                    Salida:</label>
+                                <div class="col-xs-8">
+                                    <input type="time" class="form-control" disabled value="" id="exitHour">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                 </fieldset>
-
-
                 <div class="row">
-                    <div class="d-flex  flex-row-reverse ">
-                        <button class="button button-blue" role="button" id="formIviteButton" ><span class="text">Enviar</span></button>
+                    <div class="col d-flex  flex-row-reverse gap-2">
+                        <button class="button button-blue" type="submit" id="viewMore"><span class="text">Mostrar
+                                mas</span></button>
+                        <button class="button button-blue" type="submit" id="registerExit1" hidden><span
+                                class="text">Registrar Salida</span></button>
                     </div>
                 </div>
-            </form>
+            </div>
+        </div>
+
+
+
+        <div id="personalInfoDiv">
+            <div class="card p-4 rounded-0 mb-5">
+                <form id="formInvite">
+                    <fieldset class="mb-3 row ">
+                        <legend class="col-form-legend col-xs-4">Datos Personales</legend>
+                        <div class="col-xs-8">
+                            <div class="mb-3 row">
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="inputName" class="col-xs-4 col-form-label">Nombres:</label>
+                                    <div class="col-xs-8">
+                                        <input type="text" class="form-control" name="name" id="name"
+                                            placeholder="Nombre">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="inputName" class="col-xs-4 col-form-label">Apellidos:</label>
+                                    <div class="col-xs-8">
+                                        <input type="text" class="form-control" name="lastName" id="lastName"
+                                            placeholder="Apellido">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="" class="form-label">Tipo de Identificacion</label>
+                                    <select class="form-control" name="idTypeIdentification" id="typeIdentification">
+                                        <option value="0">Seleccionar...</option>
+                                        <option value="1">Cedula de Ciudadania</option>
+                                        <option value="2">Tarjeta de Identidad</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="inputName" class="col-xs-4 col-form-label">Numero de
+                                        identificacion:</label>
+                                    <div class="col-xs-8">
+                                        <input type="text" class="form-control" name="identification"
+                                            id="identification" placeholder="Identificacion" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3 row">
+                                <label for="inputName" class="col-xs-4 col-form-label">Motivo de Ingreso:</label>
+                                <div class="col-xs-8">
+                                    <textarea type="text" class="form-control" name="motive" id="motive"
+                                        placeholder="Name"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <div class="row">
+                        <div class="d-flex  flex-row-reverse ">
+                            <button class="button button-blue" role="button" id="formIviteButton"><span class="text">Enviar</span></button>
+                            <button class="button button-blue" type="submit" id="registerExit2" hidden><span class="text">Registrar Salida</span></button>
+                            </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <script src="../scripts/invitadoScript.js" type="module"></script>
-    
+
 </body>
 
 </html>

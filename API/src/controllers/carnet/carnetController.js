@@ -5,6 +5,7 @@ const {
 const carnet = require('../../models').carnetRequest;
 const person = require('../../models').person;
 const student = require('../../models').student;
+const sendCarnetEmail = require('../carnetMail/carnetMail');
 
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
     async register(req, res) {
 
 
+        
         // Se valida si ya existe una solicitud en proceso de carnet
 
         const carnetExist = await carnet.findOne({
@@ -29,6 +31,7 @@ module.exports = {
                     state: 'Pendiente'
                 })
                 .then(carnet => {
+                    sendCarnetEmail.sendMail(req.body.studentCode);
                     res.json(carnet);
                 })
                 .catch(error => res.status(400).json(error));
